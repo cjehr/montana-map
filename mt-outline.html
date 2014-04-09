@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+	.land {
+		fill: #cdd;
+		stroke: #999;
+	}
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script>
+	var width = 960,
+    height = 800;
+			
+	var path = d3.geo.path()
+		.projection(null);
+	
+	var svg = d3.select("body").append("svg")
+		.attr("width", width)
+		.attr("height", height);
+		
+		d3.json("mt-outline.json", function(error, mt) {
+  			svg.append("path")
+  			.datum(topojson.feature(mt, mt.objects.mt))
+  			.attr("class", "land")
+  			.attr("d", path)
+  			.attr("transform", "translate(0,-125)");
+  		});
+  	
+  	d3.select(self.frameElement).style("height", height + "px");
+  	
+  	
+	
+</script>
